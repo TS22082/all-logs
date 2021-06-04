@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 const User = require("../models/userModel");
 const Log = require("../models/logModel");
-const Confirm = require("../models/confirmModel");
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/coffee-logs",
+  process.env.MONGODB_URI || "mongodb://localhost/all-logs",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -17,7 +16,6 @@ mongoose.connect(
     try {
       await User.deleteMany({});
       await Log.deleteMany({});
-      await Confirm.deleteMany({});
       console.log("db reset");
       await mongoose.connection.close();
       console.log("MongoDB disconnected");
