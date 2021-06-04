@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const User = require("../models/userModel");
 const Log = require("../models/logModel");
+const Group = require("../models/groupModel");
 
 mongoose.connect(
   process.env.MONGODB_URI || "mongodb://localhost/all-logs",
@@ -16,6 +17,7 @@ mongoose.connect(
     try {
       await User.deleteMany({});
       await Log.deleteMany({});
+      await Group.deleteMany({});
       console.log("db reset");
       await mongoose.connection.close();
       console.log("MongoDB disconnected");
