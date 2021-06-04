@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/coffee-logs",
+  process.env.MONGODB_URI || "mongodb://localhost/all-logs",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,

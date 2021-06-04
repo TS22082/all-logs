@@ -3,7 +3,11 @@ const Log = require("../models/logModel");
 module.exports = {
   newLog: async (req, res) => {
     try {
-      const newLog = new Log({ text: req.body.text, authorId: req.user });
+      const newLog = new Log({
+        text: req.body.text,
+        authorId: req.user,
+        groupId: req.body.groupId,
+      });
       res.json(await newLog.save());
     } catch (err) {
       res.send(err);

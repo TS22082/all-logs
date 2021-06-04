@@ -6,6 +6,7 @@ const logSchema = new mongoose.Schema({
     required: true,
   },
   authorId: { type: String, required: true },
+  groupId: { type: String, required: true },
 });
 
 module.exports = Log = mongoose.model("log", logSchema);
