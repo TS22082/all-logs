@@ -31,7 +31,6 @@ if (process.env.NODE_ENV === "production") {
 
 app.use("/users", require("./routes/userRoutes"));
 app.use("/logs", require("./routes/logRoutes"));
-app.use("/confirm", require("./routes/confirmRoutes"));
 
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
@@ -40,5 +39,3 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.listen(PORT, () => console.log(`Listening at: http://localhost:${PORT}`));
-
-// this is a test
