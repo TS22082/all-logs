@@ -1,6 +1,5 @@
 const nodemailer = require("nodemailer");
 const User = require("../models/userModel");
-const Confirm = require("../models/confirmModel");
 const crypto = require("crypto");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
@@ -40,37 +39,6 @@ module.exports = {
         displayName,
       });
 
-      const confirmToken = new Confirm({
-        authorId: newUser._id,
-        token: crypto.randomBytes(16).toString("hex"),
-      });
-
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: "", // TODO: create admin email
-          pass: process.env.EPASS, // TODO: add admin pw to .env file
-        },
-      });
-
-      const mailOptions = {
-        from: "", // TODO: create admin email
-        to: newUser.email,
-        subject: "Confirm your account",
-        text:
-          "Thanks for signing up! Confirm your account here: \n https://coffee-logs.herokuapp.com/confirm_account/" +
-          confirmToken.token,
-      };
-
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log("Email sent: " + info.response);
-        }
-      });
-
-      await confirmToken.save();
       const savedUser = await newUser.save();
 
       res.json(savedUser);
