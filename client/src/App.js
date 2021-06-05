@@ -1,7 +1,12 @@
+import "@fontsource/roboto";
+import { Typography } from "@material-ui/core";
+
 function App() {
   return (
     <div className="App">
-      <h1>Hello</h1>
+      <Typography variant="h1" component="h2">
+        Hello
+      </Typography>
     </div>
   );
 }
