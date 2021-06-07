@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Auth from "../../Components/Auth/Auth";
 
 import Avatar from "@material-ui/core/Avatar";
@@ -60,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Landing = () => {
   const classes = useStyles();
+  const [showLogin, setShowLogin] = useState(true);
 
   const login = () => (
     <div className={classes.paper}>
@@ -110,7 +111,7 @@ const Landing = () => {
             </Link>
           </Grid>
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link onClick={() => setShowLogin(!showLogin)} variant="body2">
               {"Don't have an account? Sign Up"}
             </Link>
           </Grid>
@@ -175,7 +176,7 @@ const Landing = () => {
         </Button>
         <Grid container>
           <Grid item>
-            <Link href="#" variant="body2">
+            <Link onClick={() => setShowLogin(!showLogin)} variant="body2">
               {"Already have an account? Sign In"}
             </Link>
           </Grid>
@@ -193,7 +194,7 @@ const Landing = () => {
         <CssBaseline />
         <Grid item xs={false} sm={4} md={7} className={classes.image} />
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
-          {register()}
+          {showLogin ? login() : register()}
         </Grid>
       </Grid>
     </Auth>
