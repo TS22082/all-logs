@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import "@fontsource/roboto";
 import axios from "axios";
 import UserContext from "./Context/UserContext";
-import { Typography } from "@material-ui/core";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Landing from "./Pages/Landing/Landing";
 import Home from "./Pages/Home/Home";
