@@ -11,11 +11,11 @@ const auth = require("../middleware/auth");
 const Log = require("../models/logModel");
 
 // create new log
-// ROUTE: /logs/
+// ROUTE: /logs
 router.post("/", auth, newLog);
 
 // get all user logs by auth
-// ROUTE: /logs/
+// ROUTE: /logs
 router.get("/", auth, getUserLogs);
 
 // find specific user log
