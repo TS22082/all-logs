@@ -79,6 +79,7 @@ const Register = (props) => {
             <Link
               onClick={() => props.setShowLogin(!props.showLogin)}
               variant="body2"
+              style={{ cursor: "pointer" }}
             >
               {"Already have an account? Sign In"}
             </Link>

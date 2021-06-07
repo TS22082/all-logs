@@ -75,6 +75,7 @@ const Login = (props) => {
             <Link
               onClick={() => props.setShowLogin(!props.showLogin)}
               variant="body2"
+              style={{ cursor: "pointer" }}
             >
               {"Don't have an account? Sign Up"}
             </Link>
