@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 import {
   Avatar,
@@ -14,6 +15,28 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Copyright from "../Copyright/Copyright";
 
 const Register = (props) => {
+  const [form, setForm] = useState({
+    email: "",
+    displayName: "",
+    password: "",
+    passwordCheck: "",
+  });
+
+  const onChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const submit = async (e) => {
+    e.preventDefault();
+    console.log("sent from frontend");
+    try {
+      const response = await axios.post("/users/register", form);
+      console.log(response);
+    } catch (err) {
+      console.log(err.response);
+    }
+  };
+
   return (
     <div className={props.classes.paper}>
       <Avatar className={props.classes.avatar}>
@@ -23,19 +46,29 @@ const Register = (props) => {
       <Typography component="h1" variant="h5">
         Register
       </Typography>
-      <form className={props.classes.form} noValidate>
+      <form onSubmit={submit} className={props.classes.form} noValidate>
         <TextField
+          onChange={onChange}
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          id="email"
           label="Email Address"
           name="email"
           autoComplete="email"
           autoFocus
         />
         <TextField
+          onChange={onChange}
+          variant="outlined"
+          margin="normal"
+          required
+          fullWidth
+          name="displayName"
+          label="Display Name"
+        />
+        <TextField
+          onChange={onChange}
           variant="outlined"
           margin="normal"
           required
@@ -43,17 +76,16 @@ const Register = (props) => {
           name="password"
           label="Password"
           type="password"
-          id="password"
         />
         <TextField
+          onChange={onChange}
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          name="password2"
+          name="passwordCheck"
           label="Confirm Password"
           type="password"
-          id="password"
         />
 
         <Button

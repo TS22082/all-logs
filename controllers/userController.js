@@ -18,7 +18,7 @@ module.exports = {
       if (password.length < 8)
         return res
           .status(400)
-          .json({ msg: "Password needs to be at least 8 characters long!" });
+          .json({ msg: "Password needs to be at least 8 characters long." });
 
       if (password !== passwordCheck)
         return res.status(400).json({ msg: "Password not match!" });
