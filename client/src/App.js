@@ -5,6 +5,8 @@ import UserContext from "./Context/UserContext";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Landing from "./Pages/Landing/Landing";
 import Home from "./Pages/Home/Home";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -51,10 +53,17 @@ function App() {
 
   return (
     <div className="App">
+      <ToastContainer
+        toastStyle={{
+          backgroundColor: "crimson",
+        }}
+      />
       <BrowserRouter>
         <UserContext.Provider value={{ userData, setUserData }}>
           <Switch>
-            <Route exact path="/" component={Landing} />
+            <Route exact path="/">
+              <Landing toast={toast} />
+            </Route>
             <Route path="/home" component={Home} />
           </Switch>
         </UserContext.Provider>

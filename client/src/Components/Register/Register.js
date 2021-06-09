@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import axios from "axios";
 
 import {
@@ -28,12 +29,11 @@ const Register = (props) => {
 
   const submit = async (e) => {
     e.preventDefault();
-    console.log("sent from frontend");
     try {
       const response = await axios.post("/users/register", form);
       console.log(response);
     } catch (err) {
-      console.log(err.response);
+      props.toast.error(err.response.data.msg);
     }
   };
 

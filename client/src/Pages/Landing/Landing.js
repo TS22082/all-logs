@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Landing = () => {
+const Landing = (props) => {
   const classes = useStyles();
   const [showLogin, setShowLogin] = useState(true);
 
@@ -53,12 +53,14 @@ const Landing = () => {
         <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
           {showLogin ? (
             <Login
+              toast={props.toast}
               classes={classes}
               setShowLogin={setShowLogin}
               showLogin={showLogin}
             />
           ) : (
             <Register
+              toast={props.toast}
               classes={classes}
               setShowLogin={setShowLogin}
               showLogin={showLogin}

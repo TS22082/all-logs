@@ -28,7 +28,7 @@ module.exports = {
       if (existingUser)
         return res
           .status(400)
-          .json({ msg: "An account with this email already exists!" });
+          .json({ msg: "An account with this email already exists" });
 
       const salt = await bcrypt.genSalt();
       const passwordHash = await bcrypt.hash(password, salt);
