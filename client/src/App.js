@@ -64,7 +64,9 @@ function App() {
             <Route exact path="/">
               <Landing toast={toast} />
             </Route>
-            <Route path="/home" component={Home} />
+            <Route path="/home">
+              <Home logout={logout} />
+            </Route>
           </Switch>
         </UserContext.Provider>
       </BrowserRouter>

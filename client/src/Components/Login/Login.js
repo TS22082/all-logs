@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useState, useContext } from "react";
+import UserContext from "../../Context/UserContext";
+import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 import {
   Avatar,
@@ -11,10 +14,36 @@ import {
 } from "@material-ui/core";
 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
 import Copyright from "../Copyright/Copyright";
+import axios from "axios";
 
 const Login = (props) => {
+  const [login, setLogin] = useState({ email: "", password: "" });
+  const { setUserData } = useContext(UserContext);
+  const history = useHistory();
+
+  const onChange = (e) => {
+    setLogin({ ...login, [e.target.name]: e.target.value });
+  };
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const loginRes = await axios.post("/users/login", login);
+
+      setUserData({
+        token: loginRes.data.token,
+        user: loginRes.data.user,
+      });
+
+      localStorage.setItem("auth-token", loginRes.data.token);
+      history.push("/");
+    } catch (err) {
+      toast.error(err.response.data.msg);
+    }
+  };
+
   return (
     <div className={props.classes.paper}>
       <Avatar className={props.classes.avatar}>
@@ -24,19 +53,20 @@ const Login = (props) => {
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
-      <form className={props.classes.form} noValidate>
+      <form onSubmit={onSubmit} className={props.classes.form} noValidate>
         <TextField
+          onChange={onChange}
           variant="outlined"
           margin="normal"
           required
           fullWidth
-          id="email"
           label="Email Address"
           name="email"
           autoComplete="email"
           autoFocus
         />
         <TextField
+          onChange={onChange}
           variant="outlined"
           margin="normal"
           required
@@ -44,7 +74,6 @@ const Login = (props) => {
           name="password"
           label="Password"
           type="password"
-          id="password"
           autoComplete="current-password"
         />
 
