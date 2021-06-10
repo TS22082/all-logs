@@ -116,16 +116,14 @@ module.exports = {
     try {
       const user = await User.findById(req.user);
 
-      if (!user.confirmed) {
-        res.json({ confirmed: user.confirmed });
-      } else {
+      if (!user.confirmed) res.json({ confirmed: user.confirmed });
+      else
         res.json({
           email: user.email,
           displayName: user.displayName,
           id: user._id,
           confirmed: user.confirmed,
         });
-      }
     } catch (err) {
       res.send(err);
     }
