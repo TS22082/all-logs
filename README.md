@@ -7,6 +7,7 @@
 
 A spinoff of an app I did specifically for coffee roasts. Now I want to expand the idea to include log groups. With groups a user can have many different types of logs organized by subject.
 
+can connect from ork machine
 <br>
 
 ### Technologies:
